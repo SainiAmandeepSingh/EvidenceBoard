@@ -1,0 +1,286 @@
+{
+  "schema": {
+    "nodes": {
+      "Entity": {
+        "common_attributes": {
+          "type": "string",
+          "sub_type": "string",
+          "label": "string",
+          "name": "string",
+          "id": "string"
+        },
+        "sub_types": {
+          "Person": {
+            "description": "Individual actors within the system",
+            "count": 18
+          },
+          "Organization": {
+            "description": "Formal entities with authority or operational capacity",
+            "count": 5
+          },
+          "Vessel": {
+            "description": "Any watercraft used for transportation or operations at sea",
+            "count": 15
+          },
+          "Group": {
+            "description": "Group of similar actors",
+            "count": 5
+          },
+          "Location": {
+            "description": "Geographic areas, natural formations, or designated zones",
+            "count": 29
+          }
+        }
+      },
+      "Event": {
+        "common_attributes": {
+          "type": "Event",
+          "sub_type": "string",
+          "label": "string",
+          "id": "string"
+        },
+        "sub_types": {
+          "Communication": {
+            "description": "Communication between entities",
+            "count": 584,
+            "specific_attributes": {
+              "timestamp": "datetime",
+              "content": "string"
+            }
+          },
+          "Monitoring": {
+            "description": "Activities related to monitoring",
+            "count": 70,
+            "specific_attributes": {
+              "timestamp": "datetime",
+              "monitoring_type": [
+                "patrol activity",
+                "water quality testing",
+                "surveillance",
+                "miscellaneous monitoring",
+                "drone surveillance"
+              ],
+              "findings": "string"
+            }
+          },
+          "Assessment": {
+            "description": "Evaluation or documentation of environmental conditions",
+            "count": 36,
+            "specific_attributes": {
+              "timestamp": "datetime",
+              "assessment_type": [
+                "site survey",
+                "environmental assessment",
+                "documentation"
+              ],
+              "results": "string"
+            }
+          },
+          "VesselMovement": {
+            "description": "Movement of vessels between locations",
+            "count": 46,
+            "specific_attributes": {
+              "timestamp": "datetime",
+              "movement_type": [
+                "departure",
+                "returning to port",
+                "rendezvous"
+              ],
+              "destination": "string"
+            }
+          },
+          "Enforcement": {
+            "description": "Actions taken to enforce regulations or restrictions",
+            "count": 21,
+            "specific_attributes": {
+              "timestamp": "datetime",
+              "enforcement_type": [
+                "enforcement operations",
+                "warnings"
+              ],
+              "outcome": "string"
+            }
+          },
+          "TourActivity": {
+            "description": "Tourism-related activities at locations",
+            "count": 13,
+            "specific_attributes": {
+              "timestamp": "datetime",
+              "activity_type": [
+                "reef tour",
+                "exploration"
+              ],
+              "participants": "integer"
+            }
+          },
+          "Collaborate": {
+            "description": "Collaboration between entities",
+            "count": 25,
+            "specific_attributes": {
+              "timestamp": "datetime"
+            }
+          },
+          "TransponderPing": {
+            "description": "Transponder pings for vessel positions",
+            "count": 3,
+            "specific_attributes": {
+              "date": "datetime",
+              "time": "string"
+            }
+          },
+          "HarborReport": {
+            "description": "Reports of activities or conditions at harbors",
+            "count": 2,
+            "specific_attributes": {
+              "date": "datetime"
+            }
+          },
+          "Criticize": {
+            "description": "Criticism between entities",
+            "count": 1,
+            "specific_attributes": {
+              "reference": "string"
+            }
+          }
+        }
+      },
+      "Relationship": {
+        "common_attributes": {
+          "type": "string",
+          "sub_type": "string",
+          "label": "string",
+          "id": "string"
+        },
+        "sub_types": {
+          "Coordinates": {
+            "description": "Coordination of activities between entities",
+            "count": 74,
+            "specific_attributes": {
+              "coordination_type": "string",
+              "start_date": "datetime"
+            }
+          },
+          "AccessPermission": {
+            "description": "Permission status for accessing specific areas",
+            "count": 68,
+            "specific_attributes": {
+              "permission_type": [
+                "regular access",
+                "special access",
+                "restricted"
+              ],
+              "start_date": "datetime",
+              "end_date": "datetime"
+            }
+          },
+          "Operates": {
+            "description": "Entity has operational control over another entity",
+            "count": 40,
+            "specific_attributes": {
+              "operational_role": "string",
+              "start_date": "datetime"
+            }
+          },
+          "Colleagues": {
+            "description": "Colleague relationship between entities",
+            "count": 30,
+            "specific_attributes": {}
+          },
+          "Suspicious": {
+            "description": "Suspicious relationship between entities",
+            "count": 28,
+            "specific_attributes": {}
+          },
+          "Reports": {
+            "description": "Reporting relationship between entities, done via the transfer of a specific report",
+            "count": 25,
+            "specific_attributes": {
+              "report_type": [
+                "environmental report",
+                "official logs",
+                "data transmission"
+              ],
+              "submission_date": "datetime"
+            }
+          },
+          "Jurisdiction": {
+            "description": "Authority over locations or vessels",
+            "count": 13,
+            "specific_attributes": {
+              "jurisdiction_type": [
+                "primary",
+                "secondary",
+                "oversight"
+              ],
+              "authority_level": "string"
+            }
+          },
+          "Unfriendly": {
+            "description": "Hostile relationship between entities",
+            "count": 5,
+            "specific_attributes": {}
+          },
+          "Friends": {
+            "description": "Friendship or supportive relationship between entities",
+            "count": 2,
+            "specific_attributes": {
+              "friendship_type": [
+                "collaborative",
+                "supportive",
+                "informal"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "edges": {
+      "description": "Connections between nodes in the knowledge graph",
+      "is_inferred": "bool",
+      "types": [
+        {
+          "source": "Entity",
+          "target": "Event",
+          "description": "Entity initiates or participates in an event (Note type is only present for Communication events)",
+          "type": "sent",
+          "count": 748
+        },
+        {
+          "source": "Event",
+          "target": "Entity",
+          "description": "Event targets or involves an entity (Note type is only present for Communication events)",
+          "type": "received",
+          "count": 758
+
+        },
+        {
+          "source": "Entity",
+          "target": "Relationship",
+          "description": "Entity is a source of relationship",
+          "count": 293
+        },
+        {
+          "source": "Relationship",
+          "target": "Entity",
+          "description": "Entity is a target in a relationship",
+          "count": 293
+        },
+        {
+          "source": "Event",
+          "target": "Event",
+          "description": "Special case for Communication event - provides evidence for or affects another event",
+          "type": "evidence_for",
+          "count": 275
+        },
+        {
+          "source": "Event",
+          "target": "Relationship",
+          "description": "Special case for Communication event - provides evidence for or affects another event",
+          "type": "evidence_for",
+          "count": 585
+        }
+      ]
+    }
+  }
+
+}
