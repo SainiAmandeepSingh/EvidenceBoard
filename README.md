@@ -9,7 +9,7 @@
 
 EvidenceBoard is a fully functional visual analytics system built on the metaphor of the detective's evidence board. It enables a domain-expert analyst with no graph theory background to investigate a knowledge graph by discovering relationships, detecting anomalies, and inferring missing connections all within a single coherent workflow.
 
-The system is implemented as a Marimo reactive Python application rendering three coordinated D3.js v7 views inside HTML iframes. It was designed and built as the individual submission for the VAST 2025 Design Challenge at Utrecht University.
+The system is implemented as a Marimo reactive Python application rendering three coordinated D3.js v7 views inside HTML iframes. It was designed and built as the individual submission for the Design Challenge at Utrecht University.
 
 ---
 
